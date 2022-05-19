@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.SearchFragment">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/yourRoom_tx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Room"
-        android:textSize="40dp"
+        android:text="@string/your_room_tx"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,17 +22,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:layout_marginEnd="200dp"
-        android:text="Rent"
+        android:text="@string/rent_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/yourRoom_tx" />
 
     <Button
         android:id="@+id/buttonDaily"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Daily"
+        android:text="@string/daily_button"
         app:layout_constraintEnd_toEndOf="@+id/buttonRent"
         app:layout_constraintStart_toStartOf="@+id/buttonRent"
         app:layout_constraintTop_toBottomOf="@+id/buttonRent" />
@@ -42,40 +42,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="200dp"
-        android:text="New buildings"
+        android:layout_marginEnd="140dp"
+        android:text="@string/new_buildings_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/buttonDaily"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonDaily" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/buttonComposition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/buttonDaily"
-        app:layout_constraintStart_toStartOf="@+id/buttonDaily"
+        android:layout_marginEnd="150dp"
+        android:text="@string/composition_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonNewBuildings" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_advertising"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonComposition" />
 
 
     <TextView
-        android:id="@+id/City_region"
+        android:id="@+id/City_region_tx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="City and region"
-        android:textSize="16dp"
+        android:text="@string/city_and_region_tx"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonRent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/yourRoom_tx" />
 </androidx.constraintlayout.widget.ConstraintLayout>
