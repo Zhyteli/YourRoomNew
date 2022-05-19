@@ -50,14 +50,14 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonDaily" />
 
     <Button
-        android:id="@+id/buttonComposition"
+        android:id="@+id/buttonWarehouse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="150dp"
-        android:text="@string/composition_button"
+        android:layout_marginEnd="155dp"
+        android:text="@string/warehouse_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonNewBuildings" />
 
@@ -69,7 +69,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonComposition" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonWarehouse" />
 
 
     <TextView

@@ -29,11 +29,18 @@
     <string name="daily_button">Daily</string>
     <string name="city_and_region_tx">City and region</string>
     <string name="new_buildings_button">New buildings</string>
-    <string name="composition_button">Composition</string>
+    <string name="warehouse_button">Warehouse</string>
     <string name="favorites_tx">Favorites</string>
-    <string name="living_quarters_button">Residential</string>
+    <string name="residential_button">Residential</string>
     <string name="non_residential_button">Non-residential</string>
     <string name="email">Email</string>
     <string name="phone_tv">Phone</string>
+    <string name="location_tx">Location</string>
+    <string name="address_tx">Address</string>
+    <string name="category_tx">Category</string>
+    <string name="price_tv">Price</string>
+    <string name="hint_price">Price per room</string>
+    <string name="addPhoto_tx">Add a photo</string>
+    <string name="description_tx">Description</string>
 
 </resources>
