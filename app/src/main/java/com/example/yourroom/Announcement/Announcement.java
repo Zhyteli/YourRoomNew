@@ -1,0 +1,67 @@
+package com.example.yourroom.Announcement;
+
+import com.google.firebase.database.Exclude;
+
+public class Announcement {
+    private String key, email, phone, price, address, description, imageUrl;
+
+    public Announcement() {
+        //empty constructor needed
+    }
+    @Exclude
+    public String getKey() {
+        return key;
+    }
+    @Exclude
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+}

@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tx_favorites"
         android:layout_marginTop="16dp"
-        android:text="@string/living_quarters_button" />
+        android:text="@string/residential_button" />
 
     <Button
         android:id="@+id/button_non_residential_premises"
