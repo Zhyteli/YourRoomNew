@@ -19,17 +19,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/category_tx"
+                android:textSize="16sp" />
 
             <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:text="@string/category_tx"/>
+                android:layout_height="match_parent">
+
                 <RadioButton
                     android:id="@+id/rentRb"
                     android:layout_width="match_parent"
@@ -44,17 +46,20 @@
                     android:layout_marginHorizontal="16dp"
                     android:text="@string/daily_button" />
             </RadioGroup>
+
             <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:layout_marginTop="16dp"
                     android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginRight="16dp"
-                    android:text="@string/category_tx"/>
+                    android:text="@string/category_tx"
+                    android:textSize="16sp" />
+
                 <RadioButton
                     android:id="@+id/residentialRb"
                     android:layout_width="match_parent"
@@ -73,13 +78,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:layout_marginTop="16dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:text="@string/location_tx"/>
+                android:text="@string/location_tx"
+                android:textSize="16sp" />
 
             <EditText
+                android:id="@+id/edit_text_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
@@ -90,52 +96,91 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:layout_marginTop="16dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:text="@string/hint_price"/>
+                android:text="@string/hint_price"
+                android:textSize="16sp" />
 
             <EditText
+                android:id="@+id/edit_text_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
-                android:inputType="number"
                 android:hint="@string/price_tv"
+                android:inputType="number"
                 android:minHeight="48dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:text="@string/addPhoto_tx"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:layout_marginTop="16dp"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:text="@string/description_tx"/>
+                android:text="@string/description_tx"
+                android:textSize="16sp" />
+
             <EditText
+                android:id="@+id/edit_text_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
                 android:minHeight="48dp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/addPhoto_tx"
+                android:textSize="16sp" />
+
             <ImageButton
+                android:id="@+id/image_button_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:minHeight="48dp"
                 android:src="@drawable/ic_baseline_photo_camera_24" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/contacts_tx"
+                android:textSize="16sp" />
 
+            <EditText
+                android:id="@+id/edit_text_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/email"
+                android:minHeight="48dp" />
+
+            <EditText
+                android:id="@+id/edit_text_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/phone_tv"
+                android:minHeight="48dp" />
+
+            <Button
+                android:id="@+id/button_publish"
+                android:text="@string/publish_tx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="50dp"/>
         </LinearLayout>
     </ScrollView>
 
