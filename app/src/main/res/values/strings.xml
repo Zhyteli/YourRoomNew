@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Your room</string>
-    <string name="title_search">Поиск</string>
-    <string name="title_favorites">Избранное</string>
-    <string name="title_add">Добавить</string>
-    <string name="title_notification">Уведомление</string>
-    <string name="title_profile">Профиль</string>
+    <string name="title_search">Search</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_add">Add</string>
+    <string name="title_notification">Notice</string>
+    <string name="title_profile">Profile</string>
     <string name="title_activity_login">LoginActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -42,5 +42,7 @@
     <string name="hint_price">Price per room</string>
     <string name="addPhoto_tx">Add a photo</string>
     <string name="description_tx">Description</string>
+    <string name="contacts_tx">Contacts</string>
+    <string name="publish_tx">Publish</string>
 
 </resources>
