@@ -24,11 +24,11 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
+    public String getuName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setuName(String name) {
         this.name = name;
     }
 

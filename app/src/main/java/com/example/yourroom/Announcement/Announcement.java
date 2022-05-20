@@ -8,6 +8,16 @@ public class Announcement {
     public Announcement() {
         //empty constructor needed
     }
+
+    public Announcement(String email, String phone, String price, String address, String description, String imageUrl) {
+        this.email = email;
+        this.phone = phone;
+        this.price = price;
+        this.address = address;
+        this.description = description;
+        this.imageUrl = imageUrl;
+    }
+
     @Exclude
     public String getKey() {
         return key;
