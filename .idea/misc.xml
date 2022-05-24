@@ -16,7 +16,13 @@
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoom/app/src/main/res/layout/fragment_search.xml" value="0.25" />
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoom/app/src/main/res/layout/image_item_add_fragment.xml" value="0.25" />
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoom/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
-        <entry key="..\:/Androi/AndroidStudioProjects/YourRoom/app/src/main/res/xml/strings.xml" value="0.24895833333333334" />
+        <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/layout/activity_daily.xml" value="0.25" />
+        <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/layout/activity_non_residential.xml" value="0.2359375" />
+        <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/layout/activity_residential.xml" value="0.2359375" />
+        <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/layout/content_daily.xml" value="0.25" />
+        <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/layout/fragment_add.xml" value="0.264" />
+        <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/layout/fragment_search.xml" value="0.25" />
+        <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/layout/image_item_add_fragment.xml" value="0.25" />
       </map>
     </option>
   </component>

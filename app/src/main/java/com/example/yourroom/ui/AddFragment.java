@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,10 +43,16 @@ import java.io.ByteArrayOutputStream;
 public class AddFragment extends Fragment {
     private EditText mEditTextFileAddress, mEditTextFilePrice, mEditTextFileDescription,
             mEditTextFileEmail, mEditTextFilePhone;
-    private RadioButton mRadioButtonRent, mRadioButtonDaily, mRadioButtonResidential, mRadioButtonNon_residential;
+    private RadioGroup mRadioGroupRent, mRadioGroupResidential;
     private Button mButtonAdd;
     private ImageButton mImageButtonAdd;
-    private String USER_KEY_ANNOUNCEMENT = "Announcement";
+    private final String USER_KEY_ANNOUNCEMENT = "Announcement";
+    private final String ANNOUNCEMENT_KEY_RENT = "Rent";
+    private final String ANNOUNCEMENT_KEY_DAILY = "Daily";
+    private final String ANNOUNCEMENT_KEY_RESIDENTIAL = "Residential";
+    private final String ANNOUNCEMENT_KEY_NON_RESIDENTIAL = "Non-Residential";
+
+    String keyHierarchy, keyHierarchyImage;
 
     private DatabaseReference mDatabaseRef;
     private StorageReference mStorageRef;
@@ -76,9 +83,49 @@ public class AddFragment extends Fragment {
                 }
             }
         });
+        //////////////////////////////
+        //////////RadioButton/////////
+        mRadioGroupRent.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i){
+                    case R.id.rentRb:
+                        keyHierarchy = ANNOUNCEMENT_KEY_RENT;
+                        break;
+                    case R.id.dailyRb:
+                        keyHierarchy = ANNOUNCEMENT_KEY_DAILY;
+                        break;
+                }
+            }
+        });
+        mRadioGroupResidential.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i){
+                    case R.id.residentialRb:
+                        mStorageRef = FirebaseStorage.getInstance().getReference(
+                                USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy);
+                        mDatabaseRef = FirebaseDatabase.getInstance().getReference(
+                                USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy);
 
+                        keyHierarchyImage = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy;
+                        break;
+                    case R.id.non_residential_Rb:
+                        mStorageRef = FirebaseStorage.getInstance().getReference(
+                                USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_NON_RESIDENTIAL + "/ " + keyHierarchy);
+                        mDatabaseRef = FirebaseDatabase.getInstance().getReference(
+                                USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_NON_RESIDENTIAL + "/ " + keyHierarchy);
+
+                        keyHierarchyImage = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_NON_RESIDENTIAL + "/ " + keyHierarchy;
+                        break;
+                }
+            }
+        });
     }
     private void init(@NonNull View view) {
+        mRadioGroupRent = view.findViewById(R.id.rent_daily_RG);
+        mRadioGroupResidential = view.findViewById(R.id.residential_or_non_RG);
+
         mEditTextFileAddress = view.findViewById(R.id.edit_text_address);
         mEditTextFilePrice = view.findViewById(R.id.edit_text_price);
         // Описание добавить внутырь
@@ -87,25 +134,18 @@ public class AddFragment extends Fragment {
         mEditTextFileEmail = view.findViewById(R.id.edit_text_email);
         mEditTextFilePhone = view.findViewById(R.id.edit_text_phone);
 
-        mRadioButtonDaily = view.findViewById(R.id.dailyRb);
-        mRadioButtonRent = view.findViewById(R.id.rentRb);
-        mRadioButtonResidential = view.findViewById(R.id.residentialRb);
-        mRadioButtonNon_residential = view.findViewById(R.id.non_residential_Rb);
-
         mButtonAdd = view.findViewById(R.id.button_publish);
         mImageButtonAdd = view.findViewById(R.id.image_button_add);
-
-        mStorageRef = FirebaseStorage.getInstance().getReference(USER_KEY_ANNOUNCEMENT);
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference(USER_KEY_ANNOUNCEMENT);
-
     }
     private void saveUser(){
         String id = mDatabaseRef.push().getKey();
+
         String email = mEditTextFileEmail.getText().toString();
         String phone = mEditTextFilePhone.getText().toString();
         String address = mEditTextFileAddress.getText().toString();
         String price = mEditTextFilePrice.getText().toString();
         String description = mEditTextFileDescription.getText().toString();
+
         Announcement newAnnouncement = new Announcement(email, phone, address, price, description, mImageUri.toString());
 
         if(!TextUtils.isEmpty(email)) {
@@ -121,7 +161,7 @@ public class AddFragment extends Fragment {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
         byte[] byteArray = baos.toByteArray();
-        final StorageReference mRef = mStorageRef.child(System.currentTimeMillis() + USER_KEY_ANNOUNCEMENT);
+        final StorageReference mRef = mStorageRef.child(System.currentTimeMillis() + USER_KEY_ANNOUNCEMENT );
         UploadTask up = mRef.putBytes(byteArray);
         Task<Uri> task = up.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override

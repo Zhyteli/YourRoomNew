@@ -51,4 +51,5 @@
         <item>Васька</item>
         <item>Рыжик</item>
     </string-array>
+    <string name="title_activity_daily">DailyActivity</string>
 </resources>

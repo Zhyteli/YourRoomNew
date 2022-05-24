@@ -38,6 +38,7 @@
                 android:textSize="16sp" />
 
             <RadioGroup
+                android:id="@+id/rent_daily_RG"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -57,6 +58,7 @@
             </RadioGroup>
 
             <RadioGroup
+                android:id="@+id/residential_or_non_RG"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

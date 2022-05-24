@@ -24,6 +24,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+        <activity android:name=".Announcement.NonResidentialActivity" />
+        <activity android:name=".Announcement.DailyActivity" />
+        <activity android:name=".Announcement.ResidentialActivity" />
     </application>
 
 </manifest>
