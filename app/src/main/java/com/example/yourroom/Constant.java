@@ -6,4 +6,6 @@ public class Constant {
     public final static String ANNOUNCEMENT_KEY_DAILY = "Daily";
     public final static String ANNOUNCEMENT_KEY_RESIDENTIAL = "Residential";
     public final static String ANNOUNCEMENT_KEY_NON_RESIDENTIAL = "Non-Residential";
+    public final static String ANNOUNCEMENT_KEY_NEW_BUILDINGS = "New Buildings";
+    public final static String ANNOUNCEMENT_KEY_WAREHOUSE = "Warehouse";
 }

@@ -1,9 +1,11 @@
 package com.example.yourroom.ui;
 
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_DAILY;
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_NEW_BUILDINGS;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RENT;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RESIDENTIAL;
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_WAREHOUSE;
 import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT;
 
 import android.content.Intent;
@@ -24,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -46,6 +49,7 @@ public class AddFragment extends Fragment {
     private EditText mEditTextFileAddress, mEditTextFilePrice, mEditTextFileDescription,
             mEditTextFileEmail, mEditTextFilePhone;
     private RadioGroup mRadioGroupRent, mRadioGroupResidential;
+    private RadioButton residential_Rb;
     private Button mButtonAdd;
     private ImageButton mImageButtonAdd;
 
@@ -66,7 +70,26 @@ public class AddFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
+        mOnClick();
 
+    }
+    private void init(@NonNull View view) {
+        mRadioGroupRent = view.findViewById(R.id.rent_daily_RG);
+        mRadioGroupResidential = view.findViewById(R.id.residential_or_non_RG);
+        residential_Rb = view.findViewById(R.id.residentialRb);
+
+        mEditTextFileAddress = view.findViewById(R.id.edit_text_address);
+        mEditTextFilePrice = view.findViewById(R.id.edit_text_price);
+        // Описание добавить внутырь
+        mEditTextFileDescription = view.findViewById(R.id.edit_text_description);
+        //
+        mEditTextFileEmail = view.findViewById(R.id.edit_text_email);
+        mEditTextFilePhone = view.findViewById(R.id.edit_text_phone);
+
+        mButtonAdd = view.findViewById(R.id.button_publish);
+        mImageButtonAdd = view.findViewById(R.id.image_button_add);
+    }
+    private void mOnClick(){
         mImageButtonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,10 +112,19 @@ public class AddFragment extends Fragment {
                 switch (i){
                     case R.id.rentRb:
                         keyHierarchy = ANNOUNCEMENT_KEY_RENT;
+                        residential_Rb.setVisibility(View.INVISIBLE);
                         break;
                     case R.id.dailyRb:
                         keyHierarchy = ANNOUNCEMENT_KEY_DAILY;
+                        residential_Rb.setVisibility(View.INVISIBLE);
                         break;
+                    case R.id.newBuildingsRb:
+                        keyHierarchy = ANNOUNCEMENT_KEY_NEW_BUILDINGS;
+                        residential_Rb.setVisibility(View.INVISIBLE);
+                        break;
+                    case R.id.warehouseRb:
+                        keyHierarchy = ANNOUNCEMENT_KEY_WAREHOUSE;
+                        residential_Rb.setVisibility(View.GONE);
                 }
             }
         });
@@ -119,21 +151,6 @@ public class AddFragment extends Fragment {
                 }
             }
         });
-    }
-    private void init(@NonNull View view) {
-        mRadioGroupRent = view.findViewById(R.id.rent_daily_RG);
-        mRadioGroupResidential = view.findViewById(R.id.residential_or_non_RG);
-
-        mEditTextFileAddress = view.findViewById(R.id.edit_text_address);
-        mEditTextFilePrice = view.findViewById(R.id.edit_text_price);
-        // Описание добавить внутырь
-        mEditTextFileDescription = view.findViewById(R.id.edit_text_description);
-        //
-        mEditTextFileEmail = view.findViewById(R.id.edit_text_email);
-        mEditTextFilePhone = view.findViewById(R.id.edit_text_phone);
-
-        mButtonAdd = view.findViewById(R.id.button_publish);
-        mImageButtonAdd = view.findViewById(R.id.image_button_add);
     }
     private void saveUser(){
         String id = mDatabaseRef.push().getKey();

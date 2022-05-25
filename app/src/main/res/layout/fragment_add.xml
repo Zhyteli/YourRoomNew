@@ -55,6 +55,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:text="@string/daily_button" />
+
+                <RadioButton
+                    android:id="@+id/newBuildingsRb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="@string/new_buildings_button" />
+
+                <RadioButton
+                    android:id="@+id/warehouseRb"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="@string/warehouse_button" />
+
             </RadioGroup>
 
             <RadioGroup
@@ -191,7 +206,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="50dp"/>
+                android:layout_marginBottom="55dp"/>
         </LinearLayout>
     </ScrollView>
 

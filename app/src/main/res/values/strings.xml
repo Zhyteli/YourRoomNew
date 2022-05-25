@@ -25,14 +25,15 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="your_room_tx">Your Room</string>
-    <string name="rent_button">Арендовать</string>
-    <string name="daily_button">Повседневная</string>
+    <string name="rent_button">Rent</string>
+    <string name="rent">Rent House</string>
+    <string name="daily_button">Daily</string>
     <string name="city_and_region_tx">City and region</string>
     <string name="new_buildings_button">New buildings</string>
     <string name="warehouse_button">Warehouse</string>
     <string name="favorites_tx">Favorites</string>
-    <string name="residential_button">Жилой</string>
-    <string name="non_residential_button">Non-Жилой</string>
+    <string name="residential_button">Residential</string>
+    <string name="non_residential_button">Non residential</string>
     <string name="email">Email</string>
     <string name="phone_tv">Phone</string>
     <string name="location_tx">Location</string>
