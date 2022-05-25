@@ -1,5 +1,11 @@
 package com.example.yourroom.ui;
 
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_DAILY;
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL;
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RENT;
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RESIDENTIAL;
+import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -18,16 +24,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yourroom.Announcement.Announcement;
-import com.example.yourroom.MainActivity;
+import com.example.yourroom.Constant;
 import com.example.yourroom.R;
-import com.example.yourroom.Upload;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -46,11 +48,7 @@ public class AddFragment extends Fragment {
     private RadioGroup mRadioGroupRent, mRadioGroupResidential;
     private Button mButtonAdd;
     private ImageButton mImageButtonAdd;
-    private final String USER_KEY_ANNOUNCEMENT = "Announcement";
-    private final String ANNOUNCEMENT_KEY_RENT = "Rent";
-    private final String ANNOUNCEMENT_KEY_DAILY = "Daily";
-    private final String ANNOUNCEMENT_KEY_RESIDENTIAL = "Residential";
-    private final String ANNOUNCEMENT_KEY_NON_RESIDENTIAL = "Non-Residential";
+
 
     String keyHierarchy, keyHierarchyImage;
 

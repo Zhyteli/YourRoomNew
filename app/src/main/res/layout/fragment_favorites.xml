@@ -33,16 +33,16 @@
         android:layout_toEndOf="@+id/button_living_quarters"
         android:text="@string/non_residential_button" />
     <ProgressBar
-        android:id="@+id/progress_circle"
+        android:id="@+id/progress_circle_favorites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_below="@+id/button_non_residential_premises"
+        android:id="@+id/recycler_view_favorites"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/button_non_residential_premises">
     </androidx.recyclerview.widget.RecyclerView>
 
 

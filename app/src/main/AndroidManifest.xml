@@ -27,6 +27,7 @@
         <activity android:name=".Announcement.NonResidentialActivity" />
         <activity android:name=".Announcement.DailyActivity" />
         <activity android:name=".Announcement.ResidentialActivity" />
+        <activity android:name=".Announcement.RentActivity" />
     </application>
 
 </manifest>

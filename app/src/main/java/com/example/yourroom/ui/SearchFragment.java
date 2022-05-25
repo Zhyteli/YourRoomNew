@@ -1,5 +1,6 @@
 package com.example.yourroom.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.yourroom.Announcement.DailyActivity;
+import com.example.yourroom.Announcement.RentActivity;
 import com.example.yourroom.R;
 
 public class SearchFragment extends Fragment {
@@ -26,6 +29,7 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         init(view);
+        mOnClick();
     }
     private void init(@NonNull View view){
         mButtonRent = view.findViewById(R.id.buttonRent);
@@ -33,5 +37,20 @@ public class SearchFragment extends Fragment {
         mButtonNewBuildings = view.findViewById(R.id.buttonNewBuildings);
         mButtonWarehouse = view.findViewById(R.id.buttonWarehouse);
     }
-
+    private void mOnClick(){
+        mButtonRent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), RentActivity.class);
+                startActivity(i);
+            }
+        });
+        mButtonDaily.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), DailyActivity.class);
+                startActivity(i);
+            }
+        });
+    }
 }
