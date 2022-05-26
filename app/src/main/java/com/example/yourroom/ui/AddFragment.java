@@ -49,7 +49,7 @@ public class AddFragment extends Fragment {
     private EditText mEditTextFileAddress, mEditTextFilePrice, mEditTextFileDescription,
             mEditTextFileEmail, mEditTextFilePhone;
     private RadioGroup mRadioGroupRent, mRadioGroupResidential;
-    private RadioButton residential_Rb;
+    private RadioButton residential_Rb, warehouseRb, rentRb, dailyRb, residentialRb, non_residential_Rb;
     private Button mButtonAdd;
     private ImageButton mImageButtonAdd;
 
@@ -77,6 +77,12 @@ public class AddFragment extends Fragment {
         mRadioGroupRent = view.findViewById(R.id.rent_daily_RG);
         mRadioGroupResidential = view.findViewById(R.id.residential_or_non_RG);
         residential_Rb = view.findViewById(R.id.residentialRb);
+        warehouseRb = view.findViewById(R.id.warehouseRb);
+
+        rentRb = mRadioGroupRent.findViewById(mRadioGroupRent.getCheckedRadioButtonId());
+        dailyRb= mRadioGroupRent.findViewById(mRadioGroupRent.getCheckedRadioButtonId());
+        residentialRb = mRadioGroupResidential.findViewById(mRadioGroupResidential.getCheckedRadioButtonId());
+        non_residential_Rb = mRadioGroupResidential.findViewById(mRadioGroupResidential.getCheckedRadioButtonId());
 
         mEditTextFileAddress = view.findViewById(R.id.edit_text_address);
         mEditTextFilePrice = view.findViewById(R.id.edit_text_price);
@@ -112,15 +118,15 @@ public class AddFragment extends Fragment {
                 switch (i){
                     case R.id.rentRb:
                         keyHierarchy = ANNOUNCEMENT_KEY_RENT;
-                        residential_Rb.setVisibility(View.INVISIBLE);
+                        residential_Rb.setVisibility(View.VISIBLE);
                         break;
                     case R.id.dailyRb:
                         keyHierarchy = ANNOUNCEMENT_KEY_DAILY;
-                        residential_Rb.setVisibility(View.INVISIBLE);
+                        residential_Rb.setVisibility(View.VISIBLE);
                         break;
                     case R.id.newBuildingsRb:
                         keyHierarchy = ANNOUNCEMENT_KEY_NEW_BUILDINGS;
-                        residential_Rb.setVisibility(View.INVISIBLE);
+                        residential_Rb.setVisibility(View.VISIBLE);
                         break;
                     case R.id.warehouseRb:
                         keyHierarchy = ANNOUNCEMENT_KEY_WAREHOUSE;
@@ -138,6 +144,8 @@ public class AddFragment extends Fragment {
                         mDatabaseRef = FirebaseDatabase.getInstance().getReference(
                                 USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy);
 
+                        warehouseRb.setVisibility(View.GONE);
+
                         keyHierarchyImage = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy;
                         break;
                     case R.id.non_residential_Rb:
@@ -145,6 +153,8 @@ public class AddFragment extends Fragment {
                                 USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_NON_RESIDENTIAL + "/ " + keyHierarchy);
                         mDatabaseRef = FirebaseDatabase.getInstance().getReference(
                                 USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_NON_RESIDENTIAL + "/ " + keyHierarchy);
+
+                        warehouseRb.setVisibility(View.VISIBLE);
 
                         keyHierarchyImage = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_NON_RESIDENTIAL + "/ " + keyHierarchy;
                         break;
@@ -161,9 +171,13 @@ public class AddFragment extends Fragment {
         String price = mEditTextFilePrice.getText().toString();
         String description = mEditTextFileDescription.getText().toString();
 
+        warehouseRb = mRadioGroupRent.findViewById(mRadioGroupRent.getCheckedRadioButtonId());
+
         Announcement newAnnouncement = new Announcement(email, phone, address, price, description, mImageUri.toString());
 
-        if(!TextUtils.isEmpty(email)) {
+        if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(phone) && !TextUtils.isEmpty(address)
+                && !TextUtils.isEmpty(price) && !TextUtils.isEmpty(description) && !TextUtils.isEmpty(mImageUri.toString())
+                && warehouseRb != null || rentRb != null || dailyRb != null || residentialRb != null || non_residential_Rb != null) {
             if (id != null) mDatabaseRef.child(id).setValue(newAnnouncement);
             Toast.makeText(getActivity(), "Сохранено", Toast.LENGTH_SHORT).show();
         }

@@ -2,8 +2,8 @@ package com.example.yourroom.Announcement;
 
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_DAILY;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_INTENT;
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_NEW_BUILDINGS;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RENT;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RESIDENTIAL;
 import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT;
 
@@ -33,7 +33,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DailyActivity extends AppCompatActivity {
+public class NewBuildingsActivity extends AppCompatActivity {
+
     private RecyclerView mRecyclerView;
     private ListRoomAdapter mAdapter;
 
@@ -50,18 +51,17 @@ public class DailyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_daily);
-
+        setContentView(R.layout.activity_new_buildings);
         if (getSupportActionBar() != null){
             actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        mRecyclerView = findViewById(R.id.recycler_view_daily);
+        mRecyclerView = findViewById(R.id.recycler_view_rent_newBuildings);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mProgressCircle = findViewById(R.id.progress_circle_daily);
+        mProgressCircle = findViewById(R.id.progress_circle_rent_newBuildings);
 
         mAnnouncement = new ArrayList<>();
 
@@ -75,12 +75,12 @@ public class DailyActivity extends AppCompatActivity {
                 case ANNOUNCEMENT_KEY_RESIDENTIAL:
                     mDatabaseRef = FirebaseDatabase.getInstance().getReference(
                             USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL
-                                    + "/ " + ANNOUNCEMENT_KEY_DAILY);
+                                    + "/ " + ANNOUNCEMENT_KEY_NEW_BUILDINGS);
                     break;
                 case ANNOUNCEMENT_KEY_NON_RESIDENTIAL:
                     mDatabaseRef = FirebaseDatabase.getInstance().getReference(
                             USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_NON_RESIDENTIAL
-                                    + "/ " + ANNOUNCEMENT_KEY_DAILY);
+                                    + "/ " + ANNOUNCEMENT_KEY_NEW_BUILDINGS);
                     break;
             }
         }
@@ -100,7 +100,7 @@ public class DailyActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(DailyActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewBuildingsActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                 mProgressCircle.setVisibility(View.INVISIBLE);
             }
         });

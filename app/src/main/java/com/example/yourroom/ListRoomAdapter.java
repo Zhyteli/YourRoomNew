@@ -42,11 +42,11 @@ public class ListRoomAdapter extends RecyclerView.Adapter<ListRoomAdapter.RoomVi
         holder.textViewDescription.setText(announcementCurrent.getDescription());
         holder.textViewPhone.setText(announcementCurrent.getPhone());
         holder.textViewEmail.setText(announcementCurrent.getEmail());
-        Picasso.get().
-                load(announcementCurrent.getImageUrl())
+        Picasso.get()
+                .load(announcementCurrent.getImageUrl())
                 .placeholder(R.mipmap.ic_launcher)
                 .fit()
-                .centerCrop()
+                .centerInside()
                 .into(holder.imageViewAnnouncement);
     }
 

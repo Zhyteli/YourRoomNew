@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.yourroom">
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -24,9 +25,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".Announcement.NonResidentialActivity" />
+        <activity android:name=".Announcement.NewBuildingsActivity" />
         <activity android:name=".Announcement.DailyActivity" />
-        <activity android:name=".Announcement.ResidentialActivity" />
+        <activity android:name=".Announcement.WarehouseActivity" />
         <activity android:name=".Announcement.RentActivity" />
     </application>
 

@@ -1,5 +1,13 @@
 package com.example.yourroom.Announcement;
 
+
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_INTENT;
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL;
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RENT;
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RESIDENTIAL;
+import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -61,9 +69,22 @@ public class RentActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
         mStorage = FirebaseStorage.getInstance();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference(
-                Constant.USER_KEY_ANNOUNCEMENT + "/ " + Constant.ANNOUNCEMENT_KEY_RESIDENTIAL
-                        + "/ " + Constant.ANNOUNCEMENT_KEY_RENT);
+
+        Intent i = getIntent();
+        if(i != null){
+            switch (i.getStringExtra(ANNOUNCEMENT_KEY_INTENT)){
+                case ANNOUNCEMENT_KEY_RESIDENTIAL:
+                    mDatabaseRef = FirebaseDatabase.getInstance().getReference(
+                            USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL
+                                    + "/ " + ANNOUNCEMENT_KEY_RENT);
+                    break;
+                case ANNOUNCEMENT_KEY_NON_RESIDENTIAL:
+                    mDatabaseRef = FirebaseDatabase.getInstance().getReference(
+                            USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_NON_RESIDENTIAL
+                                    + "/ " + ANNOUNCEMENT_KEY_RENT);
+                    break;
+            }
+        }
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
