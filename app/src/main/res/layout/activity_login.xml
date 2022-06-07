@@ -7,12 +7,23 @@
     android:background="@color/bodily"
     tools:context=".LoginActivity">
 
+    <TextView
+        android:id="@+id/yourRoom_tx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/your_room_tx"
+        android:textSize="40sp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/edEmail_pass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50sp"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@color/dark_green"
         android:ems="10"
         android:hint="E-mail"
@@ -22,8 +33,9 @@
         android:textColorHint="@color/Lilac"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.393"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/yourRoom_tx" />
 
     <EditText
         android:id="@+id/edPass"
@@ -49,9 +61,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:backgroundTint="@color/dark_green"
-        android:text="registration"
+        android:text="@string/tv_registration"
         android:textColor="@color/Lilac"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/edPass"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edPass"
@@ -67,8 +79,126 @@
         android:textColor="@color/Lilac"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/btSignUp"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btSignUp"
         app:layout_constraintTop_toBottomOf="@+id/btSignUp" />
+
+    <EditText
+        android:id="@+id/edPersonName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/dark_green"
+        android:ems="10"
+        android:hint="@string/phone_tv"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="@string/tv_person_name"
+        android:textColor="@color/Lilac"
+        android:textColorHint="@color/Lilac"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/edName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edName"
+        app:layout_constraintTop_toBottomOf="@+id/edName" />
+
+    <EditText
+        android:id="@+id/edPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/dark_green"
+        android:ems="10"
+        android:hint="@string/phone_tv"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        android:textColor="@color/Lilac"
+        android:textColorHint="@color/Lilac"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/edPass"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edPass"
+        app:layout_constraintTop_toBottomOf="@+id/edPass" />
+
+    <EditText
+        android:id="@+id/edAge"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:backgroundTint="@color/dark_green"
+        android:hint="@string/phone_tv"
+        android:minHeight="48dp"
+        android:textColor="@color/Lilac"
+        android:textColorHint="@color/Lilac"
+        android:visibility="visible"
+        android:inputType="textPersonName"
+        android:text="@string/tv_age"
+        app:layout_constraintEnd_toEndOf="@+id/edPersonName"
+        app:layout_constraintStart_toStartOf="@+id/edPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/edPersonName" />
+
+    <EditText
+        android:id="@+id/edSex"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="date"
+        android:backgroundTint="@color/dark_green"
+        android:hint="@string/tv_sex"
+        android:minHeight="48dp"
+        android:textColor="@color/Lilac"
+        android:textColorHint="@color/Lilac"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/edAge"
+        app:layout_constraintStart_toStartOf="@+id/edAge"
+        app:layout_constraintTop_toBottomOf="@+id/edAge" />
+
+    <EditText
+        android:id="@+id/edName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/dark_green"
+        android:ems="10"
+        android:hint="@string/phone_tv"
+        android:minHeight="48dp"
+        android:textColor="@color/Lilac"
+        android:textColorHint="@color/Lilac"
+        android:visibility="visible"
+        android:inputType="textPersonName"
+        android:text="@string/tv_name"
+        app:layout_constraintEnd_toEndOf="@+id/edPhone"
+        app:layout_constraintStart_toStartOf="@+id/edPhone"
+        app:layout_constraintTop_toBottomOf="@+id/edPhone" />
+
+    <Button
+        android:id="@+id/registration"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/dark_green"
+        android:text="@string/tv_registration"
+        android:textColor="@color/Lilac"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/edSex"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edSex"
+        app:layout_constraintTop_toBottomOf="@+id/edSex" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/tx_login"
+        android:backgroundTint="@color/dark_green"
+        android:textColor="@color/Lilac"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/registration"
+        app:layout_constraintStart_toStartOf="@+id/registration"
+        app:layout_constraintTop_toBottomOf="@+id/registration" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

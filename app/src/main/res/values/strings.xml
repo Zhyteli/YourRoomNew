@@ -53,4 +53,11 @@
         <item>Рыжик</item>
     </string-array>
     <string name="title_activity_daily">DailyActivity</string>
+    <string name="tv_name">Name</string>
+    <string name="tv_person_name">Person Name</string>
+    <string name="tv_age">Age</string>
+    <string name="tv_sex">Sex</string>
+    <string name="tv_registration">registration</string>
+    <string name="tx_exit">Exit</string>
+    <string name="tx_login">Login</string>
 </resources>

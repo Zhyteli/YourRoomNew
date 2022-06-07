@@ -22,9 +22,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText edEmail_pass, edPass;
+    private EditText edEmail_pass, edPass, edPhone, edName, edPersonName, edAge, edSex;
     private FirebaseAuth mAuth;
-    private Button btSignUp, btSignIn;
+    private Button btSignUp, btSignIn, registration, login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +54,20 @@ public class LoginActivity extends AppCompatActivity {
         btSignIn = findViewById(R.id.btSignIn);
         btSignUp = findViewById(R.id.btSignUp);
         mAuth = FirebaseAuth.getInstance();
+
+        edPhone = findViewById(R.id.edPhone);
+        edName = findViewById(R.id.edName);
+        edPersonName = findViewById(R.id.edPersonName);
+        edAge = findViewById(R.id.edAge);
+        edSex = findViewById(R.id.edSex);
+        registration = findViewById(R.id.registration);
+        login = findViewById(R.id.login);
     }
     private void mClick(){
-        btSignUp.setOnClickListener(new View.OnClickListener() {
+        registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (!TextUtils.isEmpty(edEmail_pass.getText().toString()) &&
                         !TextUtils.isEmpty(edPass.getText().toString())) {
 
@@ -68,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 sendEmailMass();
+                                noShow();
                                 Toast.makeText(getApplicationContext(), "Вы зарегистрировались", Toast.LENGTH_SHORT).show();
                             }
                             else {
@@ -79,6 +89,18 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     Toast.makeText(getApplicationContext(), "Пожалуйста введите свои данный полностью", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        btSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showSign();
+            }
+        });
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                noShow();
             }
         });
         btSignIn.setOnClickListener(new View.OnClickListener() {
@@ -117,5 +139,27 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    private void showSign(){
+        btSignUp.setVisibility(View.GONE);
+        btSignIn.setVisibility(View.GONE);
+
+        edPhone.setVisibility(View.VISIBLE);
+        edName.setVisibility(View.VISIBLE);
+        edPersonName.setVisibility(View.VISIBLE);
+        edAge.setVisibility(View.VISIBLE);
+        edSex.setVisibility(View.VISIBLE);
+        registration.setVisibility(View.VISIBLE);
+    }
+    private void noShow(){
+        btSignUp.setVisibility(View.VISIBLE);
+        btSignIn.setVisibility(View.VISIBLE);
+
+        edPhone.setVisibility(View.GONE);
+        edName.setVisibility(View.GONE);
+        edPersonName.setVisibility(View.GONE);
+        edAge.setVisibility(View.GONE);
+        edSex.setVisibility(View.GONE);
+        registration.setVisibility(View.GONE);
     }
 }
