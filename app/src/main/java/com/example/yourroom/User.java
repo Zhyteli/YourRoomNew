@@ -1,19 +1,19 @@
 package com.example.yourroom;
 
 public class User {
-    private String id, name, sec_name, age, sex, email, phone;
+    private String id, email, pass, phone, name, person_name, age, sex;
 
     public User() {
     }
 
-    public User(String id, String name, String sec_name, String age, String sex, String email, String phone) {
-        this.id = id;
+    public User(String email, String pass, String phone, String name, String person_name, String age, String sex) {
+        this.email = email;
+        this.pass = pass;
+        this.phone = phone;
         this.name = name;
-        this.sec_name = sec_name;
+        this.person_name = person_name;
         this.age = age;
         this.sex = sex;
-        this.email = email;
-        this.phone = phone;
     }
 
     public String getIdPerson() {
@@ -32,12 +32,12 @@ public class User {
         this.name = name;
     }
 
-    public String getSec_name() {
-        return sec_name;
+    public String getPerson_name() {
+        return person_name;
     }
 
-    public void setSec_name(String sec_name) {
-        this.sec_name = sec_name;
+    public void setPerson_name(String person_name) {
+        this.person_name = person_name;
     }
 
     public String getAge() {
@@ -70,5 +70,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 }

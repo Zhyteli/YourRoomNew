@@ -1,5 +1,6 @@
 package com.example.yourroom.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.yourroom.LoginActivity;
 import com.example.yourroom.R;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -43,6 +45,8 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
+                Intent i = new Intent(getContext(), LoginActivity.class);
+                startActivity(i);
             }
         });
     }
