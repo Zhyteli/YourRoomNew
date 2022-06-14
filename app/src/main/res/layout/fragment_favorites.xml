@@ -21,7 +21,7 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/tx_favorites"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:text="@string/residential_button" />
 
     <Button
@@ -43,6 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/button_non_residential_premises">
+
     </androidx.recyclerview.widget.RecyclerView>
 
 

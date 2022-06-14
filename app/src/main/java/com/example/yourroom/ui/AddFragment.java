@@ -28,16 +28,23 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.yourroom.Announcement.Announcement;
 import com.example.yourroom.Constant;
 import com.example.yourroom.R;
+import com.example.yourroom.User;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -53,10 +60,10 @@ public class AddFragment extends Fragment {
     private Button mButtonAdd;
     private ImageButton mImageButtonAdd;
 
-
     String keyHierarchy, keyHierarchyImage;
 
     private DatabaseReference mDatabaseRef;
+    private FirebaseAuth mAuth;
     private StorageReference mStorageRef;
     private Uri mImageUri;
     @Override
@@ -71,8 +78,10 @@ public class AddFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         init(view);
         mOnClick();
-
+        FirebaseUser cUser = mAuth.getCurrentUser();
+        assert cUser != null;
     }
+
     private void init(@NonNull View view) {
         mRadioGroupRent = view.findViewById(R.id.rent_daily_RG);
         mRadioGroupResidential = view.findViewById(R.id.residential_or_non_RG);
@@ -94,6 +103,8 @@ public class AddFragment extends Fragment {
 
         mButtonAdd = view.findViewById(R.id.button_publish);
         mImageButtonAdd = view.findViewById(R.id.image_button_add);
+
+        mAuth = FirebaseAuth.getInstance();
     }
     private void mOnClick(){
         mImageButtonAdd.setOnClickListener(new View.OnClickListener() {

@@ -15,17 +15,19 @@ import android.widget.Toast;
 import com.example.yourroom.Constant;
 import com.example.yourroom.ListRoomAdapter;
 import com.example.yourroom.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WarehouseActivity extends AppCompatActivity {
+public class WarehouseActivity extends AppCompatActivity implements ListRoomAdapter.OnItemClickListener {
 
     private RecyclerView mRecyclerView;
     private ListRoomAdapter mAdapter;
@@ -59,12 +61,12 @@ public class WarehouseActivity extends AppCompatActivity {
 
         mAdapter = new ListRoomAdapter(getApplicationContext(), mAnnouncement);
         mRecyclerView.setAdapter(mAdapter);
-
+        mAdapter.setOnItemClickListener(WarehouseActivity.this);
         mStorage = FirebaseStorage.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(
                 Constant.USER_KEY_ANNOUNCEMENT + "/ " + Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL
                         + "/ " + Constant.ANNOUNCEMENT_KEY_WAREHOUSE);
-        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+        mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 mAnnouncement.clear();
@@ -91,5 +93,35 @@ public class WarehouseActivity extends AppCompatActivity {
             finish();
         }
         return true;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+    }
+
+    @Override
+    public void onWhatEverClick(int position) {
+
+    }
+
+    @Override
+    public void onDeleteClick(int position) {
+        Announcement selectedItem = mAnnouncement.get(position);
+        String selectedKey = selectedItem.getKey();
+
+        StorageReference imageRef = mStorage.getReferenceFromUrl(selectedItem.getImageUrl());
+        imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                mDatabaseRef.child(selectedKey).removeValue();
+                Toast.makeText(WarehouseActivity.this, "Удалено", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDatabaseRef.removeEventListener(mDBListener);
     }
 }

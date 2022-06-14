@@ -1,12 +1,16 @@
 package com.example.yourroom;
 
+import com.google.firebase.auth.FirebaseUser;
+
 public class User {
-    private String id, email, pass, phone, name, person_name, age, sex;
+    public String id, email, pass, phone, name, person_name, age, sex, imageUrl, favorites;
 
     public User() {
     }
 
-    public User(String email, String pass, String phone, String name, String person_name, String age, String sex) {
+    public User(String id, String email, String pass, String phone, String name,
+                String person_name, String age, String sex, String imageUrl){
+        this.id = id;
         this.email = email;
         this.pass = pass;
         this.phone = phone;
@@ -14,6 +18,20 @@ public class User {
         this.person_name = person_name;
         this.age = age;
         this.sex = sex;
+        this.imageUrl = imageUrl;
+    }
+    public User(String id, String email, String pass, String phone, String name,
+                String person_name, String age, String sex, String imageUrl, String favorites){
+        this.id = id;
+        this.email = email;
+        this.pass = pass;
+        this.phone = phone;
+        this.name = name;
+        this.person_name = person_name;
+        this.age = age;
+        this.sex = sex;
+        this.imageUrl = imageUrl;
+        this.favorites = favorites;
     }
 
     public String getIdPerson() {
@@ -78,5 +96,21 @@ public class User {
 
     public void setPass(String pass) {
         this.pass = pass;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(String favorites) {
+        this.favorites = favorites;
     }
 }

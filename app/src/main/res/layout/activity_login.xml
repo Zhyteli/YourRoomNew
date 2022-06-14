@@ -11,10 +11,10 @@
         android:id="@+id/yourRoom_tx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:text="@string/your_room_tx"
         android:textSize="40sp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageAvatar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -196,6 +196,17 @@
         app:layout_constraintEnd_toEndOf="@+id/registration"
         app:layout_constraintStart_toStartOf="@+id/registration"
         app:layout_constraintTop_toBottomOf="@+id/registration" />
+
+    <ImageView
+        android:id="@+id/imageAvatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/edEmail_pass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="16dp"
+        android:visibility="gone"
+        android:src="@drawable/ic_baseline_photo_camera_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

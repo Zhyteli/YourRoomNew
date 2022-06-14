@@ -10,5 +10,6 @@ public class Constant {
     public final static String ANNOUNCEMENT_KEY_WAREHOUSE = "Warehouse";
     public final static String ANNOUNCEMENT_KEY_INTENT = "Intent";
     public final static String ANNOUNCEMENT_KEY_INTENT_RES = "IntentRes";
+    public final static String ANNOUNCEMENT_KEY_FAVORITES= "Favorites";
     public final static String USER_KEY = "User";
 }

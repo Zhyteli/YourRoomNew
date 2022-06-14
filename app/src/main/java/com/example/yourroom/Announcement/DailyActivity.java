@@ -23,17 +23,19 @@ import android.widget.Toast;
 import com.example.yourroom.Constant;
 import com.example.yourroom.ListRoomAdapter;
 import com.example.yourroom.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DailyActivity extends AppCompatActivity {
+public class DailyActivity extends AppCompatActivity implements ListRoomAdapter.OnItemClickListener {
     private RecyclerView mRecyclerView;
     private ListRoomAdapter mAdapter;
 
@@ -67,7 +69,7 @@ public class DailyActivity extends AppCompatActivity {
 
         mAdapter = new ListRoomAdapter(getApplicationContext(), mAnnouncement);
         mRecyclerView.setAdapter(mAdapter);
-
+        mAdapter.setOnItemClickListener(DailyActivity.this);
         mStorage = FirebaseStorage.getInstance();
         Intent i = getIntent();
         if(i != null){
@@ -84,13 +86,14 @@ public class DailyActivity extends AppCompatActivity {
                     break;
             }
         }
-        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+        mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 mAnnouncement.clear();
 
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     Announcement announcement = postSnapshot.getValue(Announcement.class);
+                    assert announcement != null;
                     announcement.setKey(postSnapshot.getKey());
                     mAnnouncement.add(announcement);
                 }
@@ -111,5 +114,35 @@ public class DailyActivity extends AppCompatActivity {
             finish();
         }
         return true;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+    }
+
+    @Override
+    public void onWhatEverClick(int position) {
+
+    }
+
+    @Override
+    public void onDeleteClick(int position) {
+        Announcement selectedItem = mAnnouncement.get(position);
+        String selectedKey = selectedItem.getKey();
+
+        StorageReference imageRef = mStorage.getReferenceFromUrl(selectedItem.getImageUrl());
+        imageRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                mDatabaseRef.child(selectedKey).removeValue();
+                Toast.makeText(DailyActivity.this, "Удалено", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDatabaseRef.removeEventListener(mDBListener);
     }
 }

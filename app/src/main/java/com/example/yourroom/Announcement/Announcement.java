@@ -3,7 +3,7 @@ package com.example.yourroom.Announcement;
 import com.google.firebase.database.Exclude;
 
 public class Announcement {
-    private String key, email, phone, price, address, description, imageUrl;
+    public String key, email, phone, price, address, description, imageUrl;
 
     public Announcement() {
         //empty constructor needed
