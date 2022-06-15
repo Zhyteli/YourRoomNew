@@ -18,9 +18,13 @@
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoom/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1915" />
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1915" />
+        <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1915" />
+        <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/drawable/ic_launcher_house_background.xml" value="0.1915" />
+        <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/drawable/ic_launcher_logo.xml" value="0.1915" />
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1915" />
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/layout/activity_daily.xml" value="0.25" />
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/layout/activity_logo.xml" value="0.24895833333333334" />
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/layout/activity_new_buildings.xml" value="0.25" />
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/layout/activity_non_residential.xml" value="0.2359375" />
@@ -35,7 +39,10 @@
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/layout/fragment_search.xml" value="0.25" />
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/layout/image_item_add_fragment.xml" value="0.25" />
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/layout/ttttt.xml" value="0.24895833333333334" />
+        <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1915" />
+        <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/mipmap-anydpi-v26/ic_launcher_house.xml" value="0.1915" />
+        <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/mipmap-anydpi-v26/ic_launcher_house_round.xml" value="0.1915" />
         <entry key="..\:/Androi/AndroidStudioProjects/YourRoomNew/app/src/main/res/xml/preference_screen.xml" value="0.24895833333333334" />
       </map>
     </option>

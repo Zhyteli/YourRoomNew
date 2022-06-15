@@ -46,7 +46,7 @@ public class ListRoomAdapter extends RecyclerView.Adapter<ListRoomAdapter.RoomVi
         holder.textViewEmail.setText(announcementCurrent.getEmail());
         Picasso.get()
                 .load(announcementCurrent.getImageUrl())
-                .placeholder(R.mipmap.ic_launcher)
+                .placeholder(R.mipmap.ic_launcher_logo)
                 .fit()
                 .centerInside()
                 .into(holder.imageViewAnnouncement);

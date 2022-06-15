@@ -7,9 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="Lilac">#6E4B6B</color>
-    <color name="Navy_blue">#537197</color>
-    <color name="dark_green">#42A1A5</color>
-    <color name="bodily">#CBC2BB</color>
-    <color name="red_lite">#BE867E</color>
+    <color name="sea_foam">#c4dfe6</color>
+    <color name="wave">#66a5ad</color>
+    <color name="ocean">#07575b</color>
+    <color name="deep_water">#003b46</color>
 </resources>

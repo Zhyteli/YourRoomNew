@@ -20,4 +20,10 @@
     </style>
     <style name="Theme.YourRoom.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.YourRoom.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.YourRoom.mStyles">
+        <item name="colorPrimary">@color/wave</item>
+        <item name="colorOnPrimary">@color/deep_water</item>
+        <item name="colorSecondary">@color/wave</item>
+    </style>
 </resources>
