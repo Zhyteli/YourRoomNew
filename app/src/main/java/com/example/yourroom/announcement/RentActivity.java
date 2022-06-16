@@ -1,17 +1,25 @@
-package com.example.yourroom.Announcement;
+package com.example.yourroom.announcement;
 
 
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_ADDRESS;
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_DESCRIPTION;
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_EMAIL;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_FAVORITES;
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_IMAGE_NAME;
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_IMAGE_NAME_SEC;
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_IMAGE_URI;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_INTENT;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL;
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_PHONE;
+import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_PRICE;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RENT;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RESIDENTIAL;
 import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT;
+import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT_ALL;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +45,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +58,7 @@ public class RentActivity extends AppCompatActivity implements ListRoomAdapter.O
 
     private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseRef;
+    private DatabaseReference mDatabase;
     private ValueEventListener mDBListener;
     private FirebaseAuth mAuth;
 
@@ -129,13 +139,25 @@ public class RentActivity extends AppCompatActivity implements ListRoomAdapter.O
 
     @Override
     public void onItemClick(int position) {
+        mDatabase = FirebaseDatabase.getInstance().getReference(USER_KEY_ANNOUNCEMENT_ALL);
+        Announcement selectedItem = mAnnouncement.get(position);
+
+                        Intent intent = new Intent(RentActivity.this, ItemActivity.class);
+                        intent.putExtra(ANNOUNCEMENT_KEY_EMAIL, selectedItem.email);
+                        intent.putExtra(ANNOUNCEMENT_KEY_PHONE, selectedItem.phone);
+                        intent.putExtra(ANNOUNCEMENT_KEY_ADDRESS, selectedItem.address);
+                        intent.putExtra(ANNOUNCEMENT_KEY_PRICE, selectedItem.price);
+                        intent.putExtra(ANNOUNCEMENT_KEY_DESCRIPTION, selectedItem.description);
+                        intent.putExtra(ANNOUNCEMENT_KEY_IMAGE_URI, selectedItem.imageUrl);
+
+                        startActivity(intent);
 
     }
 
     @Override
     public void onWhatEverClick(int position) {
         FirebaseUser cUser = mAuth.getCurrentUser();
-
+        String userId = cUser.getUid();
         Announcement selectedItem = mAnnouncement.get(position);
         StorageReference imageRef = mStorage.getReferenceFromUrl(selectedItem.getImageUrl());
         String selectedKey = selectedItem.getKey();
@@ -163,7 +185,7 @@ public class RentActivity extends AppCompatActivity implements ListRoomAdapter.O
         String price = selectedItem.getPrice();
         String description = selectedItem.getDescription();
         Uri mImageUri = Uri.parse(selectedItem.getImageUrl());
-        Announcement newAnnouncement = new Announcement(email, phone, address, price, description, mImageUri.toString());
+        Announcement newAnnouncement = new Announcement(email, phone, address, price, description, mImageUri.toString(), userId);
         if (id != null) mDatabase.child(id).setValue(newAnnouncement);
 
     }
@@ -185,5 +207,14 @@ public class RentActivity extends AppCompatActivity implements ListRoomAdapter.O
     protected void onDestroy() {
         super.onDestroy();
         mDatabaseRef.removeEventListener(mDBListener);
+    }
+    protected void onResume() {
+        super.onResume();
+        View decorView = getWindow().getDecorView();
+        // Hides the status and navigation bar until the user clicks
+        // on the screeen.
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
     }
 }

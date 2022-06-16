@@ -26,11 +26,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
-        <activity android:name=".Announcement.NewBuildingsActivity" android:theme="@style/Theme.YourRoom.NoActionBar"/>
-        <activity android:name=".Announcement.DailyActivity" android:theme="@style/Theme.YourRoom.NoActionBar"/>
-        <activity android:name=".Announcement.WarehouseActivity" android:theme="@style/Theme.YourRoom.NoActionBar"/>
-        <activity android:name=".Announcement.RentActivity" android:theme="@style/Theme.YourRoom.NoActionBar"/>
+        <activity android:name=".announcement.NewBuildingsActivity"/>
+        <activity android:name=".announcement.DailyActivity"/>
+        <activity android:name=".announcement.WarehouseActivity"/>
+        <activity android:name=".announcement.RentActivity"/>
         <activity android:name=".LoginActivity" android:theme="@style/Theme.YourRoom.NoActionBar"/>
+        <activity android:name=".announcement.ItemActivity" />
     </application>
 
 </manifest>

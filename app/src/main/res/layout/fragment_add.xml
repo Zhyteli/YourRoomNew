@@ -126,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
-                android:backgroundTint="@color/wave"
+                android:backgroundTint="@color/deep_water"
                 android:textColor="@color/ocean"
                 android:textColorHint="@color/ocean"
                 android:hint="@string/address_tx"
@@ -149,7 +149,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
                 android:hint="@string/price_tv"
-                android:backgroundTint="@color/wave"
+                android:backgroundTint="@color/deep_water"
                 android:textColor="@color/ocean"
                 android:textColorHint="@color/ocean"
                 android:inputType="number"
@@ -171,7 +171,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
-                android:backgroundTint="@color/wave"
+                android:backgroundTint="@color/deep_water"
                 android:textColor="@color/ocean"
                 android:textColorHint="@color/ocean"
                 android:minHeight="48dp" />
@@ -193,7 +193,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:minHeight="48dp"
                 android:background="@color/wave"
-                android:src="@drawable/ic_baseline_photo_camera_24" />
+                android:src="@drawable/ic_baseline_add_photo_alternate_24" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -212,7 +212,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
                 android:hint="@string/email"
-                android:backgroundTint="@color/wave"
+                android:backgroundTint="@color/deep_water"
                 android:textColor="@color/ocean"
                 android:textColorHint="@color/ocean"
                 android:inputType="textEmailAddress"
@@ -225,7 +225,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="8dp"
                 android:hint="@string/phone_tv"
-                android:backgroundTint="@color/wave"
+                android:backgroundTint="@color/deep_water"
                 android:textColor="@color/ocean"
                 android:textColorHint="@color/ocean"
                 android:inputType="phone"

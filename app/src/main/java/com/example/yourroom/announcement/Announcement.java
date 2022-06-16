@@ -1,21 +1,22 @@
-package com.example.yourroom.Announcement;
+package com.example.yourroom.announcement;
 
 import com.google.firebase.database.Exclude;
 
 public class Announcement {
-    public String key, email, phone, price, address, description, imageUrl;
+    public String key, email, phone, price, address, description, imageUrl, userId;
 
     public Announcement() {
         //empty constructor needed
     }
 
-    public Announcement(String email, String phone, String price, String address, String description, String imageUrl) {
+    public Announcement(String email, String phone, String price, String address, String description, String imageUrl, String userId) {
         this.email = email;
         this.phone = phone;
         this.price = price;
         this.address = address;
         this.description = description;
         this.imageUrl = imageUrl;
+        this.userId = userId;
     }
 
     @Exclude
@@ -73,5 +74,13 @@ public class Announcement {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

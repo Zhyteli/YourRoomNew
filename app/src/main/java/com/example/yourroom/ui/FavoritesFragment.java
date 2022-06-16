@@ -1,23 +1,14 @@
 package com.example.yourroom.ui;
 
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_DAILY;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_FAVORITES;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_INTENT;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_NEW_BUILDINGS;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RENT;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RESIDENTIAL;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_WAREHOUSE;
 import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,13 +21,10 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.yourroom.Announcement.Announcement;
-import com.example.yourroom.Announcement.RentActivity;
+import com.example.yourroom.announcement.Announcement;
 import com.example.yourroom.ListRoomAdapter;
 import com.example.yourroom.R;
-import com.example.yourroom.User;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -130,6 +118,7 @@ public class FavoritesFragment extends Fragment {
                     //if (announcement.email.equals(userEmail)){
 
                    // }
+
                 }
 
                 mAdapter.notifyDataSetChanged();

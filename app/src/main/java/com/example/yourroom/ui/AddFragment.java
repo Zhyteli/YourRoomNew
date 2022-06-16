@@ -6,11 +6,14 @@ import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RENT;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RESIDENTIAL;
 import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_WAREHOUSE;
+import static com.example.yourroom.Constant.USER_KEY;
 import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT;
+import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT_ALL;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -28,23 +31,18 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.yourroom.Announcement.Announcement;
-import com.example.yourroom.Constant;
+import com.example.yourroom.announcement.Announcement;
 import com.example.yourroom.R;
-import com.example.yourroom.User;
+import com.example.yourroom.announcement.DailyActivity;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -60,12 +58,14 @@ public class AddFragment extends Fragment {
     private Button mButtonAdd;
     private ImageButton mImageButtonAdd;
 
-    String keyHierarchy, keyHierarchyImage;
+    String keyHierarchy, keyHierarchyImage, keyHierarchyMy;
 
     private DatabaseReference mDatabaseRef;
+    private DatabaseReference mDatabaseAll;
     private FirebaseAuth mAuth;
     private StorageReference mStorageRef;
     private Uri mImageUri;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -102,6 +102,8 @@ public class AddFragment extends Fragment {
         mEditTextFilePhone = view.findViewById(R.id.edit_text_phone);
 
         mButtonAdd = view.findViewById(R.id.button_publish);
+        Drawable myDrawable = getResources().getDrawable(R.drawable.ic_baseline_public_24);
+        mButtonAdd.setCompoundDrawablesWithIntrinsicBounds(myDrawable, null, null, null);
         mImageButtonAdd = view.findViewById(R.id.image_button_add);
 
         mAuth = FirebaseAuth.getInstance();
@@ -155,6 +157,7 @@ public class AddFragment extends Fragment {
                         mDatabaseRef = FirebaseDatabase.getInstance().getReference(
                                 USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy);
 
+                        keyHierarchyMy = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy;
                         warehouseRb.setVisibility(View.GONE);
 
                         keyHierarchyImage = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy;
@@ -165,8 +168,8 @@ public class AddFragment extends Fragment {
                         mDatabaseRef = FirebaseDatabase.getInstance().getReference(
                                 USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_NON_RESIDENTIAL + "/ " + keyHierarchy);
 
+                        keyHierarchyMy = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy;
                         warehouseRb.setVisibility(View.VISIBLE);
-
                         keyHierarchyImage = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_NON_RESIDENTIAL + "/ " + keyHierarchy;
                         break;
                 }
@@ -175,7 +178,10 @@ public class AddFragment extends Fragment {
     }
     private void saveUser(){
         String id = mDatabaseRef.push().getKey();
-
+        mDatabaseAll = FirebaseDatabase.getInstance().getReference(USER_KEY_ANNOUNCEMENT_ALL);
+        String idAll = mDatabaseAll.push().getKey();
+        FirebaseUser cUser = mAuth.getCurrentUser();
+        String userId = cUser.getUid();
         String email = mEditTextFileEmail.getText().toString();
         String phone = mEditTextFilePhone.getText().toString();
         String address = mEditTextFileAddress.getText().toString();
@@ -184,12 +190,14 @@ public class AddFragment extends Fragment {
 
         warehouseRb = mRadioGroupRent.findViewById(mRadioGroupRent.getCheckedRadioButtonId());
 
-        Announcement newAnnouncement = new Announcement(email, phone, address, price, description, mImageUri.toString());
+        Announcement newAnnouncement = new Announcement(email, phone, price + " грн", address, description, mImageUri.toString(), userId);
 
         if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(phone) && !TextUtils.isEmpty(address)
                 && !TextUtils.isEmpty(price) && !TextUtils.isEmpty(description) && !TextUtils.isEmpty(mImageUri.toString())
                 && warehouseRb != null || rentRb != null || dailyRb != null || residentialRb != null || non_residential_Rb != null) {
+
             if (id != null) mDatabaseRef.child(id).setValue(newAnnouncement);
+            if (idAll != null) mDatabaseAll.child(idAll).setValue(newAnnouncement);
             Toast.makeText(getActivity(), "Сохранено", Toast.LENGTH_SHORT).show();
         }
         else {
@@ -201,7 +209,7 @@ public class AddFragment extends Fragment {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
         byte[] byteArray = baos.toByteArray();
-        final StorageReference mRef = mStorageRef.child(System.currentTimeMillis() + USER_KEY_ANNOUNCEMENT );
+        final StorageReference mRef = mStorageRef.child(System.currentTimeMillis() + USER_KEY_ANNOUNCEMENT);
         UploadTask up = mRef.putBytes(byteArray);
         Task<Uri> task = up.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override

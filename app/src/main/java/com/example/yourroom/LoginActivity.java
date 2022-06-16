@@ -1,18 +1,16 @@
 package com.example.yourroom;
 
 import static com.example.yourroom.Constant.USER_KEY;
-import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -20,10 +18,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.yourroom.Announcement.Announcement;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -70,12 +66,24 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "User null", Toast.LENGTH_SHORT).show();
         }
     }
-
+    protected void onResume() {
+        super.onResume();
+        View decorView = getWindow().getDecorView();
+        // Hides the status and navigation bar until the user clicks
+        // on the screeen.
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+    }
     private void init(){
         edEmail_pass = findViewById(R.id.edEmail_pass);
         edPass = findViewById(R.id.edPass);
         btSignIn = findViewById(R.id.btSignIn);
+        Drawable myDrawable = getResources().getDrawable(R.drawable.ic_login_foreground);
+        Drawable regisDrawable = getResources().getDrawable(R.drawable.ic_baseline_fingerprint_24);
+        btSignIn.setCompoundDrawablesWithIntrinsicBounds(myDrawable, null, null, null);
         btSignUp = findViewById(R.id.btSignUp);
+        btSignUp.setCompoundDrawablesWithIntrinsicBounds(regisDrawable, null, null, null);
         mAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference(USER_KEY);
         mStorageRef = FirebaseStorage.getInstance().getReference(USER_KEY);
@@ -87,6 +95,8 @@ public class LoginActivity extends AppCompatActivity {
         edSex = findViewById(R.id.edSex);
         registration = findViewById(R.id.registration);
         login = findViewById(R.id.login);
+        registration.setCompoundDrawablesWithIntrinsicBounds(regisDrawable, null, null, null);
+        login.setCompoundDrawablesWithIntrinsicBounds(myDrawable, null, null, null);
         imageAvatar = findViewById(R.id.imageAvatar);
 
     }

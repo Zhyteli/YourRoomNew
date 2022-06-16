@@ -1,4 +1,4 @@
-package com.example.yourroom;
+package com.example.yourroom.announcement.advertising;
 
 import android.content.Context;
 import android.view.ContextMenu;
@@ -13,36 +13,36 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.yourroom.ListRoomAdapter;
+import com.example.yourroom.R;
 import com.example.yourroom.announcement.Announcement;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class ListRoomAdapter extends RecyclerView.Adapter<ListRoomAdapter.RoomViewHolder>{
+public class AdvertisingListAdapter extends RecyclerView.Adapter<AdvertisingListAdapter.AdvertisingViewHolder> {
     private Context mContext;
     private List<Announcement> mAnnouncement;
-    private OnItemClickListener mListener;
+    private AdvertisingListAdapter.OnItemClickListener mListener;
 
-    public ListRoomAdapter(Context context, List<Announcement> announcements) {
+    public AdvertisingListAdapter(Context context, List<Announcement> announcements) {
         mContext = context;
         mAnnouncement = announcements;
     }
 
     @NonNull
     @Override
-    public RoomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.image_item_add_fragment, parent, false);
-        return new RoomViewHolder(v);
+    public AdvertisingListAdapter.AdvertisingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(mContext).inflate(R.layout.advertising_item_add_fragment, parent, false);
+        return new AdvertisingListAdapter.AdvertisingViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(RoomViewHolder holder, int position) {
+    public void onBindViewHolder(AdvertisingListAdapter.AdvertisingViewHolder holder, int position) {
         Announcement announcementCurrent = mAnnouncement.get(position);
         holder.textViewPrice.setText(announcementCurrent.getPrice());
         holder.textViewAddress.setText(announcementCurrent.getAddress());
 
-        holder.textViewPhone.setText(announcementCurrent.getPhone());
-        holder.textViewEmail.setText(announcementCurrent.getEmail());
         Picasso.get()
                 .load(announcementCurrent.getImageUrl())
                 .placeholder(R.mipmap.ic_launcher_logo)
@@ -56,21 +56,17 @@ public class ListRoomAdapter extends RecyclerView.Adapter<ListRoomAdapter.RoomVi
         return mAnnouncement.size();
     }
 
-    public class RoomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
+    public class AdvertisingViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
-        public TextView textViewPrice, textViewAddress,
-                textViewDescription, textViewPhone, textViewEmail;
+        public TextView textViewPrice, textViewAddress;
         public ImageView imageViewAnnouncement;
 
-        public RoomViewHolder(@NonNull View itemView) {
+        public AdvertisingViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewPrice = itemView.findViewById(R.id.text_view_price);
-            textViewAddress = itemView.findViewById(R.id.text_view_address);
+            textViewPrice = itemView.findViewById(R.id.text_view_price_advertising);
+            textViewAddress = itemView.findViewById(R.id.text_view_address_advertising);
 
-            textViewPhone = itemView.findViewById(R.id.text_view_phone);
-            textViewEmail = itemView.findViewById(R.id.text_view_email);
-
-            imageViewAnnouncement = itemView.findViewById(R.id.image_view_announcement);
+            imageViewAnnouncement = itemView.findViewById(R.id.image_view_advertising);
 
             itemView.setOnClickListener(this);
             itemView.setOnCreateContextMenuListener(this);
@@ -81,13 +77,9 @@ public class ListRoomAdapter extends RecyclerView.Adapter<ListRoomAdapter.RoomVi
             if (mListener != null){
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION){
-                    switch (item.getItemId()){
-                        case 1:
-                            mListener.onWhatEverClick(position);
-                            return true;
-                        case 2:
-                            mListener.onDeleteClick(position);
-                            return true;
+                    if (item.getItemId() == 1) {
+                        mListener.onWhatEverClick(position);
+                        return true;
                     }
                 }
             }
@@ -107,11 +99,9 @@ public class ListRoomAdapter extends RecyclerView.Adapter<ListRoomAdapter.RoomVi
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
             menu.setHeaderTitle("Выберите действие");
-            MenuItem doWhatever = menu.add(Menu.NONE, 1, 1, "Делай что угодно");
-            MenuItem delete = menu.add(Menu.NONE,2, 2, "Удалить");
+            MenuItem doWhatever = menu.add(Menu.NONE, 1, 1, "Избранное");
 
             doWhatever.setOnMenuItemClickListener(this);
-            delete.setOnMenuItemClickListener(this);
         }
     }
 
@@ -120,10 +110,9 @@ public class ListRoomAdapter extends RecyclerView.Adapter<ListRoomAdapter.RoomVi
 
         void onWhatEverClick(int position);
 
-        void onDeleteClick(int position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener){
+    public void setOnItemClickListener(AdvertisingListAdapter.OnItemClickListener listener){
         mListener = listener;
     }
 }

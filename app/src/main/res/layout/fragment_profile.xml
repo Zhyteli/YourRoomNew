@@ -11,13 +11,12 @@
         android:id="@+id/avatar_iv"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
+        android:src="@mipmap/ic_launcher_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/ic_launcher_foreground"
-        android:src="@drawable/ic_launcher_foreground"
-        />
+        tools:srcCompat="@mipmap/ic_launcher_logo" />
 
     <TextView
         android:id="@+id/id_person_tv"
@@ -25,8 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Id"
-        android:textSize="16sp"
         android:textColor="@color/deep_water"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/avatar_iv" />
@@ -35,12 +34,9 @@
         android:id="@+id/email_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="100dp"
         android:text="@string/email"
-        android:textSize="16sp"
         android:textColor="@color/deep_water"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_person_tv" />
 
@@ -50,10 +46,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/phone_tv"
-        android:textSize="16sp"
         android:textColor="@color/deep_water"
-        app:layout_constraintEnd_toEndOf="@+id/email_tv"
-        app:layout_constraintStart_toStartOf="@+id/email_tv"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_tv" />
 
     <Button
@@ -61,10 +56,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="304dp"
+        android:layout_marginBottom="572dp"
         android:text="@string/tx_exit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.996"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progress_circle_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerView_profile"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerView_profile"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView_profile"
+        app:layout_constraintTop_toTopOf="@+id/recyclerView_profile" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_profile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="50dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_phone"></androidx.recyclerview.widget.RecyclerView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
