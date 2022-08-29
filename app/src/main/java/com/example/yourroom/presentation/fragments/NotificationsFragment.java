@@ -1,4 +1,4 @@
-package com.example.yourroom.ui;
+package com.example.yourroom.presentation.fragments;
 
 import android.os.Bundle;
 

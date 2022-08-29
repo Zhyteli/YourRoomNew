@@ -1,17 +1,15 @@
-package com.example.yourroom.ui;
+package com.example.yourroom.presentation.fragments;
 
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_ADDRESS;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_DESCRIPTION;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_EMAIL;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_IMAGE_URI;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_INTENT;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_PHONE;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_PRICE;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RENT;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RESIDENTIAL;
-import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT;
-import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT_AD;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_ADDRESS;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_DESCRIPTION;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_EMAIL;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_IMAGE_URI;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_INTENT;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_PHONE;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_PRICE;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_RESIDENTIAL;
+import static com.example.yourroom.data.Constant.USER_KEY_ANNOUNCEMENT_AD;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -32,16 +30,14 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.yourroom.ListRoomAdapter;
-import com.example.yourroom.MainActivity;
-import com.example.yourroom.announcement.Announcement;
-import com.example.yourroom.announcement.DailyActivity;
-import com.example.yourroom.announcement.ItemActivity;
-import com.example.yourroom.announcement.NewBuildingsActivity;
-import com.example.yourroom.announcement.RentActivity;
-import com.example.yourroom.announcement.WarehouseActivity;
+import com.example.yourroom.domain.Announcement;
+import com.example.yourroom.presentation.announcement.DailyActivity;
+import com.example.yourroom.presentation.announcement.ItemActivity;
+import com.example.yourroom.presentation.announcement.NewBuildingsActivity;
+import com.example.yourroom.presentation.announcement.RentActivity;
+import com.example.yourroom.presentation.announcement.WarehouseActivity;
 import com.example.yourroom.R;
-import com.example.yourroom.announcement.advertising.AdvertisingListAdapter;
+import com.example.yourroom.presentation.adapters.AdvertisingListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -132,24 +128,11 @@ public class SearchFragment extends Fragment implements AdvertisingListAdapter.O
                 rentDialog(RentActivity.class);
             }
         });
-        mButtonDaily.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rentDialog(DailyActivity.class);
-            }
-        });
-        mButtonNewBuildings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rentDialog(NewBuildingsActivity.class);
-            }
-        });
-        mButtonWarehouse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(), WarehouseActivity.class);
-                startActivity(i);
-            }
+        mButtonDaily.setOnClickListener(view -> rentDialog(DailyActivity.class));
+        mButtonNewBuildings.setOnClickListener(view -> rentDialog(NewBuildingsActivity.class));
+        mButtonWarehouse.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(), WarehouseActivity.class);
+            startActivity(i);
         });
     }
     private void rentDialog(Class activity) {

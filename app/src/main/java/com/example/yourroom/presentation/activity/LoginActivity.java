@@ -1,6 +1,7 @@
-package com.example.yourroom;
+package com.example.yourroom.presentation.activity;
 
-import static com.example.yourroom.Constant.USER_KEY;
+
+import static com.example.yourroom.data.Constant.USER_KEY;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,6 +21,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.yourroom.R;
+import com.example.yourroom.domain.User;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -150,23 +153,23 @@ public class LoginActivity extends AppCompatActivity {
                         && !TextUtils.isEmpty(edPass.getText().toString())) {
                     mAuth.signInWithEmailAndPassword(edEmail_pass.getText().toString(),edPass.getText().toString()).
                             addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Вы вошли", Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            assert user != null;
-                            if (user.isEmailVerified()) {
-                                Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(i);
-                            }
-                            else Toast.makeText(getApplicationContext(), "Перейдите на свой email, для авторизации", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            Toast.makeText(getApplicationContext(), "У вас нет доступа", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getApplicationContext(), "Вы вошли", Toast.LENGTH_SHORT).show();
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        assert user != null;
+                                        if (user.isEmailVerified()) {
+                                            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                                            startActivity(i);
+                                        }
+                                        else Toast.makeText(getApplicationContext(), "Перейдите на свой email, для авторизации", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else {
+                                        Toast.makeText(getApplicationContext(), "У вас нет доступа", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                 }
             }
         });

@@ -1,9 +1,9 @@
-package com.example.yourroom.ui;
+package com.example.yourroom.presentation.fragments;
 
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_FAVORITES;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RESIDENTIAL;
-import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_FAVORITES;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_RESIDENTIAL;
+import static com.example.yourroom.data.Constant.USER_KEY_ANNOUNCEMENT;
 
 import android.os.Bundle;
 
@@ -21,8 +21,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.yourroom.announcement.Announcement;
-import com.example.yourroom.ListRoomAdapter;
+import com.example.yourroom.domain.Announcement;
+import com.example.yourroom.presentation.adapters.ListRoomAdapter;
 import com.example.yourroom.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;

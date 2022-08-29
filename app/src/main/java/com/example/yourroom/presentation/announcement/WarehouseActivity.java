@@ -1,16 +1,14 @@
-package com.example.yourroom.announcement;
+package com.example.yourroom.presentation.announcement;
 
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_ADDRESS;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_DESCRIPTION;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_EMAIL;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_FAVORITES;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_IMAGE_URI;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_INTENT;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_PHONE;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_PRICE;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RESIDENTIAL;
-import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_ADDRESS;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_DESCRIPTION;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_EMAIL;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_FAVORITES;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_IMAGE_URI;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_PHONE;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_PRICE;
+import static com.example.yourroom.data.Constant.USER_KEY_ANNOUNCEMENT;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -26,8 +24,9 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.yourroom.Constant;
-import com.example.yourroom.ListRoomAdapter;
+import com.example.yourroom.data.Constant;
+import com.example.yourroom.domain.Announcement;
+import com.example.yourroom.presentation.adapters.ListRoomAdapter;
 import com.example.yourroom.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;

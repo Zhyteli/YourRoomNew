@@ -1,14 +1,13 @@
-package com.example.yourroom.ui;
+package com.example.yourroom.presentation.fragments;
 
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_DAILY;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_NEW_BUILDINGS;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RENT;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_RESIDENTIAL;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_WAREHOUSE;
-import static com.example.yourroom.Constant.USER_KEY;
-import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT;
-import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT_ALL;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_DAILY;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_NEW_BUILDINGS;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_RENT;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_RESIDENTIAL;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_WAREHOUSE;
+import static com.example.yourroom.data.Constant.USER_KEY_ANNOUNCEMENT;
+import static com.example.yourroom.data.Constant.USER_KEY_ANNOUNCEMENT_ALL;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,6 +19,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -33,9 +33,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.yourroom.announcement.Announcement;
+import com.example.yourroom.domain.Announcement;
 import com.example.yourroom.R;
-import com.example.yourroom.announcement.DailyActivity;
+import com.example.yourroom.presentation.models.AddViewModel;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -66,6 +66,9 @@ public class AddFragment extends Fragment {
     private StorageReference mStorageRef;
     private Uri mImageUri;
 
+    private AddViewModel viewModel;
+    private String path;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -76,6 +79,7 @@ public class AddFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        viewModel = new ViewModelProvider(this).get(AddViewModel.class);
         init(view);
         mOnClick();
         FirebaseUser cUser = mAuth.getCurrentUser();
@@ -92,6 +96,7 @@ public class AddFragment extends Fragment {
         dailyRb= mRadioGroupRent.findViewById(mRadioGroupRent.getCheckedRadioButtonId());
         residentialRb = mRadioGroupResidential.findViewById(mRadioGroupResidential.getCheckedRadioButtonId());
         non_residential_Rb = mRadioGroupResidential.findViewById(mRadioGroupResidential.getCheckedRadioButtonId());
+        warehouseRb = mRadioGroupRent.findViewById(mRadioGroupRent.getCheckedRadioButtonId());
 
         mEditTextFileAddress = view.findViewById(R.id.edit_text_address);
         mEditTextFilePrice = view.findViewById(R.id.edit_text_price);
@@ -119,7 +124,8 @@ public class AddFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (mImageButtonAdd != null) {
-                    uploadImage();
+                    viewModel.uploadImage(mImageButtonAdd, path);
+                    saveAnnouncement();
                 }
             }
         });
@@ -147,83 +153,66 @@ public class AddFragment extends Fragment {
                 }
             }
         });
-        mRadioGroupResidential.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch (i){
-                    case R.id.residentialRb:
-                        mStorageRef = FirebaseStorage.getInstance().getReference(
-                                USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy);
-                        mDatabaseRef = FirebaseDatabase.getInstance().getReference(
-                                USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy);
+        mRadioGroupResidential.setOnCheckedChangeListener((radioGroup, i) -> {
+            switch (i){
+                case R.id.residentialRb:
+                    path = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy;
 
-                        keyHierarchyMy = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy;
-                        warehouseRb.setVisibility(View.GONE);
+                    keyHierarchyMy = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy;
+//                    warehouseRb.setVisibility(View.GONE);
 
-                        keyHierarchyImage = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy;
-                        break;
-                    case R.id.non_residential_Rb:
-                        mStorageRef = FirebaseStorage.getInstance().getReference(
-                                USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_NON_RESIDENTIAL + "/ " + keyHierarchy);
-                        mDatabaseRef = FirebaseDatabase.getInstance().getReference(
-                                USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_NON_RESIDENTIAL + "/ " + keyHierarchy);
+                    keyHierarchyImage = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy;
+                    break;
+                case R.id.non_residential_Rb:
+                    path = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_NON_RESIDENTIAL + "/ " + keyHierarchy;
 
-                        keyHierarchyMy = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy;
-                        warehouseRb.setVisibility(View.VISIBLE);
-                        keyHierarchyImage = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_NON_RESIDENTIAL + "/ " + keyHierarchy;
-                        break;
-                }
+                    keyHierarchyMy = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_RESIDENTIAL + "/ " + keyHierarchy;
+//                    warehouseRb.setVisibility(View.VISIBLE);
+                    keyHierarchyImage = USER_KEY_ANNOUNCEMENT + "/ " + ANNOUNCEMENT_KEY_NON_RESIDENTIAL + "/ " + keyHierarchy;
+                    break;
             }
         });
     }
-    private void saveUser(){
-        String id = mDatabaseRef.push().getKey();
-        mDatabaseAll = FirebaseDatabase.getInstance().getReference(USER_KEY_ANNOUNCEMENT_ALL);
-        String idAll = mDatabaseAll.push().getKey();
-        FirebaseUser cUser = mAuth.getCurrentUser();
-        String userId = cUser.getUid();
+    private void saveAnnouncement(){
         String email = mEditTextFileEmail.getText().toString();
         String phone = mEditTextFilePhone.getText().toString();
         String address = mEditTextFileAddress.getText().toString();
         String price = mEditTextFilePrice.getText().toString();
         String description = mEditTextFileDescription.getText().toString();
 
-        warehouseRb = mRadioGroupRent.findViewById(mRadioGroupRent.getCheckedRadioButtonId());
+        examinationInput(email, phone, address, price, description);
+//        Announcement newAnnouncement = new Announcement(
+//                email,
+//                phone,
+//                price + " грн",
+//                address, description,
+//                mImageUri.toString(),
+//                userId
+//        );
 
-        Announcement newAnnouncement = new Announcement(email, phone, price + " грн", address, description, mImageUri.toString(), userId);
 
+//        if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(phone) && !TextUtils.isEmpty(address)
+//                && !TextUtils.isEmpty(price) && !TextUtils.isEmpty(description) && !TextUtils.isEmpty(mImageUri.toString())
+//                && warehouseRb != null || rentRb != null || dailyRb != null || residentialRb != null || non_residential_Rb != null) {
+//
+//            if (id != null) mDatabaseRef.child(id).setValue(newAnnouncement);
+//            if (idAll != null) mDatabaseAll.child(idAll).setValue(newAnnouncement);
+//            Toast.makeText(getActivity(), "Сохранено", Toast.LENGTH_SHORT).show();
+//        }
+//        else {
+//            Toast.makeText(getActivity(), "Пустое поле", Toast.LENGTH_SHORT).show();
+//        }
+    }
+    private void examinationInput(String email, String phone, String address, String price, String description){
         if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(phone) && !TextUtils.isEmpty(address)
                 && !TextUtils.isEmpty(price) && !TextUtils.isEmpty(description) && !TextUtils.isEmpty(mImageUri.toString())
-                && warehouseRb != null || rentRb != null || dailyRb != null || residentialRb != null || non_residential_Rb != null) {
+                && warehouseRb != null || rentRb != null || dailyRb != null || residentialRb != null || non_residential_Rb != null){
+            viewModel.addAnnouncement(email, phone, address, price, description, path, path);
 
-            if (id != null) mDatabaseRef.child(id).setValue(newAnnouncement);
-            if (idAll != null) mDatabaseAll.child(idAll).setValue(newAnnouncement);
             Toast.makeText(getActivity(), "Сохранено", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        }else {
             Toast.makeText(getActivity(), "Пустое поле", Toast.LENGTH_SHORT).show();
         }
-    }
-    private void uploadImage(){
-        Bitmap bitmap = ((BitmapDrawable) mImageButtonAdd.getDrawable()).getBitmap();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
-        byte[] byteArray = baos.toByteArray();
-        final StorageReference mRef = mStorageRef.child(System.currentTimeMillis() + USER_KEY_ANNOUNCEMENT);
-        UploadTask up = mRef.putBytes(byteArray);
-        Task<Uri> task = up.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-            @Override
-            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                return mRef.getDownloadUrl();
-            }
-        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-            @Override
-            public void onComplete(@NonNull Task<Uri> task) {
-                mImageUri = task.getResult();
-                saveUser();
-            }
-        });
-
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

@@ -1,16 +1,13 @@
-package com.example.yourroom.ui;
+package com.example.yourroom.presentation.fragments;
 
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_ADDRESS;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_DESCRIPTION;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_EMAIL;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_FAVORITES;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_IMAGE_URI;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_NON_RESIDENTIAL;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_PHONE;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_PRICE;
-import static com.example.yourroom.Constant.USER_KEY;
-import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT;
-import static com.example.yourroom.Constant.USER_KEY_ANNOUNCEMENT_ALL;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_ADDRESS;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_DESCRIPTION;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_EMAIL;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_IMAGE_URI;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_PHONE;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_PRICE;
+import static com.example.yourroom.data.Constant.USER_KEY;
+import static com.example.yourroom.data.Constant.USER_KEY_ANNOUNCEMENT_ALL;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -18,7 +15,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,13 +29,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.yourroom.ListRoomAdapter;
-import com.example.yourroom.LoginActivity;
+import com.example.yourroom.presentation.adapters.ListRoomAdapter;
+import com.example.yourroom.presentation.activity.LoginActivity;
 import com.example.yourroom.R;
-import com.example.yourroom.User;
-import com.example.yourroom.announcement.Announcement;
-import com.example.yourroom.announcement.ItemActivity;
-import com.example.yourroom.announcement.RentActivity;
+import com.example.yourroom.domain.User;
+import com.example.yourroom.domain.Announcement;
+import com.example.yourroom.presentation.announcement.ItemActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

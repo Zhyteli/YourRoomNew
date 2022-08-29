@@ -1,6 +1,4 @@
-package com.example.yourroom;
-
-import com.google.firebase.auth.FirebaseUser;
+package com.example.yourroom.domain;
 
 public class User {
     public String id, email, pass, phone, name, person_name, age, sex, imageUrl, favorites;

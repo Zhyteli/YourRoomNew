@@ -1,4 +1,4 @@
-package com.example.yourroom.announcement.advertising;
+package com.example.yourroom.presentation.adapters;
 
 import android.content.Context;
 import android.view.ContextMenu;
@@ -13,9 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.yourroom.ListRoomAdapter;
 import com.example.yourroom.R;
-import com.example.yourroom.announcement.Announcement;
+import com.example.yourroom.domain.Announcement;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -40,6 +39,7 @@ public class AdvertisingListAdapter extends RecyclerView.Adapter<AdvertisingList
     @Override
     public void onBindViewHolder(AdvertisingListAdapter.AdvertisingViewHolder holder, int position) {
         Announcement announcementCurrent = mAnnouncement.get(position);
+
         holder.textViewPrice.setText(announcementCurrent.getPrice());
         holder.textViewAddress.setText(announcementCurrent.getAddress());
 

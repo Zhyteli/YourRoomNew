@@ -7,27 +7,27 @@
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.example.yourroom.ui.SearchFragment"
+        android:name="com.example.yourroom.presentation.fragments.SearchFragment"
         android:label="Navigation"
         tools:layout="@layout/fragment_search"/>
     <fragment
         android:id="@+id/navigation_favorites"
-        android:name="com.example.yourroom.ui.FavoritesFragment"
+        android:name="com.example.yourroom.presentation.fragments.FavoritesFragment"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorites" />
     <fragment
         android:id="@+id/navigation_add"
-        android:name="com.example.yourroom.ui.AddFragment"
+        android:name="com.example.yourroom.presentation.fragments.AddFragment"
         android:label="Add"
         tools:layout="@layout/fragment_add" />
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.yourroom.ui.NotificationsFragment"
+        android:name="com.example.yourroom.presentation.fragments.NotificationsFragment"
         android:label="Notifications"
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.example.yourroom.ui.ProfileFragment"
+        android:name="com.example.yourroom.presentation.fragments.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

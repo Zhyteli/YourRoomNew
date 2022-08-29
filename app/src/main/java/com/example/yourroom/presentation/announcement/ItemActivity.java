@@ -1,13 +1,11 @@
-package com.example.yourroom.announcement;
+package com.example.yourroom.presentation.announcement;
 
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_ADDRESS;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_DESCRIPTION;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_EMAIL;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_IMAGE_NAME;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_IMAGE_NAME_SEC;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_IMAGE_URI;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_PHONE;
-import static com.example.yourroom.Constant.ANNOUNCEMENT_KEY_PRICE;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_ADDRESS;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_DESCRIPTION;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_EMAIL;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_IMAGE_URI;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_PHONE;
+import static com.example.yourroom.data.Constant.ANNOUNCEMENT_KEY_PRICE;
 
 import android.content.Intent;
 import android.os.Bundle;

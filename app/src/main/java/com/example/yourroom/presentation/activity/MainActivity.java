@@ -1,8 +1,9 @@
-package com.example.yourroom;
+package com.example.yourroom.presentation.activity;
 
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.yourroom.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;

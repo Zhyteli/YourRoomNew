@@ -1,4 +1,4 @@
-package com.example.yourroom.announcement;
+package com.example.yourroom.domain;
 
 import com.google.firebase.database.Exclude;
 

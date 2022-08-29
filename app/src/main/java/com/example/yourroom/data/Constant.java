@@ -1,4 +1,4 @@
-package com.example.yourroom;
+package com.example.yourroom.data;
 
 public class Constant {
     public final static String USER_KEY_ANNOUNCEMENT = "Announcement";

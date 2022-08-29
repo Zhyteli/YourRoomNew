@@ -1,4 +1,4 @@
-package com.example.yourroom;
+package com.example.yourroom.presentation.adapters;
 
 import android.content.Context;
 import android.view.ContextMenu;
@@ -13,7 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.yourroom.announcement.Announcement;
+import com.example.yourroom.R;
+import com.example.yourroom.domain.Announcement;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -106,9 +107,9 @@ public class ListRoomAdapter extends RecyclerView.Adapter<ListRoomAdapter.RoomVi
 
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            menu.setHeaderTitle("Выберите действие");
-            MenuItem doWhatever = menu.add(Menu.NONE, 1, 1, "Делай что угодно");
-            MenuItem delete = menu.add(Menu.NONE,2, 2, "Удалить");
+            menu.setHeaderTitle("Select an action");
+            MenuItem doWhatever = menu.add(Menu.NONE, 1, 1, "Favorites");
+            MenuItem delete = menu.add(Menu.NONE,2, 2, "Delete");
 
             doWhatever.setOnMenuItemClickListener(this);
             delete.setOnMenuItemClickListener(this);

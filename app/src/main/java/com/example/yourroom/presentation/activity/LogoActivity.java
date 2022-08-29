@@ -1,4 +1,4 @@
-package com.example.yourroom;
+package com.example.yourroom.presentation.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import com.example.yourroom.R;
 
 public class LogoActivity extends Activity {
     private Animation logoAnim, buttonLogoAnim;
